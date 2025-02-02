@@ -1,4 +1,4 @@
-# Caranya
+# Kali Linux didalam Debian 
 
 Update repo Termux dan instal paket yang diperlukan.
 
@@ -62,6 +62,12 @@ apt-get update
 ```
 
 Ini akan mengupdate repositori Debian dan Kali Linux secara bersamaan.
+
+Kalau hanya mau mengupdate repositori Kali Linux ketikkan:
+
+```
+apt-get -t kali-rolling update 
+```
 
 ## Instal Paket 
 

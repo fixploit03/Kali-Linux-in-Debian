@@ -10,7 +10,7 @@ pd login debian
 apt-get update && apt-get upgrade
 apt-get install wget
 apt-get install gpg
-wget -qO - https://archive.kali.org/archive-key.asc | sudo tee /usr/share/keyrings/kali-archive-keyring.asc
+wget -qO - https://archive.kali.org/archive-key.asc | tee /usr/share/keyrings/kali-archive-keyring.asc
 ```
 
 Buka file repositori Debian.

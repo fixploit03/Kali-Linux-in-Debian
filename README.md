@@ -10,6 +10,7 @@ pd login debian
 apt-get update && apt-get upgrade
 apt-get install wget
 apt-get install gpg
+echo "deb [signed-by=/usr/share/keyrings/kali-archive-keyring.asc] http://http.kali.org/kali kali-rolling main non-free contrib" | tee /etc/apt/sources.list.d/kali.list
 wget -qO - https://archive.kali.org/archive-key.asc | tee /usr/share/keyrings/kali-archive-keyring.asc
 ```
 

@@ -1,6 +1,20 @@
-# Kali Linux didalam Debian 
+# Kali Linux didalam Termux (proot-distro Debian)
 
-Update repo Termux dan instal paket yang diperlukan.
+Update repository Termux dan instal paket-paket yang diperlukan dengan mengetikkan perintah berikut:
+
+```
+pkg update & pkg upgrade
+pkg install proot-distro
+pd install debian 
+```
+
+Masuk ke Debian dengan perintah:
+
+```
+pd login debian
+```
+
+Update repository Debian dan instal paket-paket yang diperlukan dengan mengetikkan perintah berikut:
 
 ```
 apt-get update && apt-get upgrade
@@ -24,7 +38,7 @@ deb [signed-by=/usr/share/keyrings/debian-archive-keyring.gpg] http://deb.debian
 deb [signed-by=/usr/share/keyrings/debian-archive-keyring.gpg] http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
 ```
 
-Buat file APT Pinning Debian.
+Buat file APT Pinning untuk Debian.
 
 ```
 nano /etc/apt/preferences.d/debian-pin
@@ -38,7 +52,7 @@ Pin: release a=bookworm
 Pin-Priority: 1000
 ```
 
-Buat file APT Pinning Kali Linux 
+Buat file APT Pinning untuk Kali Linux 
 
 ```
 nano /etc/apt/preferences.d/kali-pin
@@ -80,7 +94,7 @@ apt-get install -t kali-rolling [nama_paket]
 
 Jika tidak mau menggunakan `-t kali-rolling` hanya `apt-get install [nama_paket]` ubah nilai Pin-Priority pada file APT Pinning Kali menjadi lebih besar dari nilai Pin-Priority pada file APT Pinning Debian.
 
-## Kesimpulan 
+## Catatan 
 
 Instal paket dari repositori Debian
 

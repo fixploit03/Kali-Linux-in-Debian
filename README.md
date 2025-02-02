@@ -3,10 +3,6 @@
 Update repo Termux dan instal paket yang diperlukan.
 
 ```
-pkg update && pkg upgrade
-pkg install proot-distro
-pd install debian
-pd login debian
 apt-get update && apt-get upgrade
 apt-get install wget
 apt-get install gpg

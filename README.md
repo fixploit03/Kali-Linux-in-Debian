@@ -3,7 +3,7 @@
 Update repository Termux dan instal paket-paket yang diperlukan dengan mengetikkan perintah berikut:
 
 ```
-pkg update & pkg upgrade
+pkg update && pkg upgrade
 pkg install proot-distro
 pd install debian 
 ```

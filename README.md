@@ -1,6 +1,6 @@
 # Kali Linux didalam Termux (proot-distro Debian)
 
-Update repository Termux dan instal paket-paket yang diperlukan dengan mengetikkan perintah berikut:
+Perbarui repository Termux dan instal paket yang diperlukan dengan menjalankan perintah berikut:
 
 ```
 pkg update && pkg upgrade
@@ -14,23 +14,28 @@ Masuk ke Debian dengan perintah:
 pd login debian
 ```
 
-Update repository Debian dan instal paket-paket yang diperlukan dengan mengetikkan perintah berikut:
+Perbarui repository Debian dan instal paket yang diperlukan dengan menjalankan perintah berikut:
 
 ```
 apt-get update && apt-get upgrade
 apt-get install wget
 apt-get install gpg
+```
+
+Tambahkan repository Kali Linux ke dalam sistem dengan menjalankan perintah berikut:
+
+```
 echo "deb [signed-by=/usr/share/keyrings/kali-archive-keyring.asc] http://http.kali.org/kali kali-rolling main non-free contrib" | tee /etc/apt/sources.list.d/kali.list
 wget -qO - https://archive.kali.org/archive-key.asc | tee /usr/share/keyrings/kali-archive-keyring.asc
 ```
 
-Buka file repositori Debian.
+Buka file repository Debian:
 
 ```
 nano /etc/apt/sources.list
 ```
 
-Ubah konfigurasinya menjadi seperti ini:
+Ubah isinya menjadi seperti berikut:
 
 ```
 deb [signed-by=/usr/share/keyrings/debian-archive-keyring.gpg] http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
@@ -44,7 +49,7 @@ Buat file APT Pinning untuk Debian.
 nano /etc/apt/preferences.d/debian-pin
 ```
 
-Tambahkan konfigurasi seperti ini:
+Tambahkan konfigurasi berikut:
 
 ```
 Package: *
@@ -52,13 +57,13 @@ Pin: release a=bookworm
 Pin-Priority: 1000
 ```
 
-Buat file APT Pinning untuk Kali Linux 
+Buat file APT Pinning untuk Kali Linux:
 
 ```
 nano /etc/apt/preferences.d/kali-pin
 ```
 
-Tambahkan konfigurasi seperti ini:
+Tambahkan konfigurasi berikut:
 
 ```
 Package: *
@@ -66,15 +71,15 @@ Pin: release a=kali-rolling
 Pin-Priority: 500
 ```
 
-Update repositori
+Perbarui repository:
 
 ```
 apt-get update
 ```
 
-Ini akan mengupdate repositori Debian dan Kali Linux secara bersamaan.
+Perintah ini akan memperbarui repository Debian dan Kali Linux secara bersamaan.
 
-Kalau hanya mau mengupdate repositori Kali Linux ketikkan:
+Jika hanya ingin memperbarui repository Kali Linux, jalankan:
 
 ```
 apt-get -t kali-rolling update 
@@ -82,30 +87,29 @@ apt-get -t kali-rolling update
 
 ## Instal Paket 
 
-untuk menginstal paket ketikkan perintah `apt-get install [nama_paket]`.
+Untuk menginstal paket, gunakan perintah:
 
-Menginstal paket tergantung pada nilai Pin-Priority pada file APT Pinning, jika nilai Pin-Priority Debian lebih besar dari Pin-Priority Kali Linux maka secara default akan menginstal paket dari repositori Debian.
+```
+apt-get install [nama_paket]
+```
 
-Pada kasus ini untuk menginstal paket dari repositori Kali Linux gunakan perintah dibawah ini:
+Secara default, paket akan diinstal dari repository yang memiliki nilai Pin-Priority lebih tinggi dalam konfigurasi APT Pinning.
+
+Jika ingin menginstal paket dari repository Kali Linux, gunakan:
 
 ```
 apt-get install -t kali-rolling [nama_paket]
 ```
 
-Jika tidak mau menggunakan `-t kali-rolling` hanya `apt-get install [nama_paket]` ubah nilai Pin-Priority pada file APT Pinning Kali menjadi lebih besar dari nilai Pin-Priority pada file APT Pinning Debian.
-
-## Catatan 
-
-Instal paket dari repositori Debian
+Jika ingin menginstal paket dari repository Debian, gunakan:
 
 ```
 apt-get install -t bookworm [nama_paket]
 ```
 
-Instal paket dari repositori Kali Linux
+Jika tidak ingin menggunakan opsi `-t kali-rolling` atau `-t bookworm`, Anda bisa mengubah nilai Pin-Priority di file APT Pinning agar repository yang diinginkan menjadi prioritas utama.
 
-```
-apt-get install -t kali-rolling [nama_paket]
-```
+## Catatan 
 
-Kalo `apt-get install [nama_paket]` tergantung pada nilai Pin-Priority.
+- Perintah `apt-get install [nama_paket]` akan menginstal paket dari repository yang memiliki Pin-Priority lebih tinggi.
+- Jika ingin memastikan paket diinstal dari repository tertentu, gunakan opsi `-t [repo]` sesuai kebutuhan.
